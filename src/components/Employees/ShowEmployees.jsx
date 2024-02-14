@@ -12,20 +12,26 @@ function ShowEmployees({ allEmployees }) {
 
   async function deleteEmployeeHandler() {
     try {
-      const response = await fetch(`/api/employees/${deleteID}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `${process.env.BACKEND_URL}/api/employees/${deleteID}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       const data = await response.json();
       alert(data.message);
       if (response.ok) {
-        const response = await fetch(`/api/employees`, {
-          method: "GET",
-          cache: "no-store",
-        });
+        const response = await fetch(
+          `${process.env.BACKEND_URL}/api/employees`,
+          {
+            method: "GET",
+            cache: "no-store",
+          }
+        );
         const fetchEmployeesResponse = await response.json();
         if (fetchEmployeesResponse.status == 200) {
           setEmployees(fetchEmployeesResponse.data);

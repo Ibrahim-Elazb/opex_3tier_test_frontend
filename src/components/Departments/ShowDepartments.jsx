@@ -12,20 +12,26 @@ function ShowDepartments({ allDepartments }) {
 
   async function deleteDepartmentHandler() {
     try {
-      const response = await fetch(`/api/departments/${deleteID}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `${process.env.BACKEND_URL}/api/departments/${deleteID}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       const data = await response.json();
       alert(data.message);
       if (response.ok) {
-        const newDepartmentsResponse = await fetch(`/api/departments`, {
-          method: "GET",
-          cache: "no-store",
-        });
+        const newDepartmentsResponse = await fetch(
+          `${process.env.BACKEND_URL}/api/departments`,
+          {
+            method: "GET",
+            cache: "no-store",
+          }
+        );
         const departmentsData = await newDepartmentsResponse.json();
         if (departmentsData.status === 200) {
           setDepartments(departmentsData.data);

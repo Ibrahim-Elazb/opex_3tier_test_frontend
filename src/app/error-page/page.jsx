@@ -1,7 +1,7 @@
 import React from "react";
 function ErrorPage() {
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center my-10">
       <h1 class="text-4xl font-bold text-gray-800 mb-4">
         Something Went Wrong
       </h1>

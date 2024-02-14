@@ -16,21 +16,27 @@ function ShowProjects({ allProjects }) {
 
   async function deleteProjectHandler() {
     try {
-      const response = await fetch(`/api/projects/${deleteID}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `${process.env.BACKEND_URL}/api/projects/${deleteID}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       const data = await response.json();
       alert(data.message);
       if (response.ok) {
         // Fetch the updated list of projects
-        const updatedProjectsResponse = await fetch(`/api/projects`, {
-          method: "GET",
-          cache: "no-store",
-        });
+        const updatedProjectsResponse = await fetch(
+          `${process.env.BACKEND_URL}/api/projects`,
+          {
+            method: "GET",
+            cache: "no-store",
+          }
+        );
         const updatedProjectsData = await updatedProjectsResponse.json();
         if (updatedProjectsData.status === 200) {
           setProjects(updatedProjectsData.data);

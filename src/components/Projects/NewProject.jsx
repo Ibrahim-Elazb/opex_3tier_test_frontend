@@ -47,8 +47,8 @@ const ProjectForm = ({ allDepartments, project }) => {
 
     try {
       const url = project
-        ? `/api/projects/${project.project_id}`
-        : `/api/projects`;
+        ? `${process.env.BACKEND_URL}/api/projects/${project.project_id}`
+        : `${process.env.BACKEND_URL}/api/projects`;
       const method = project ? "PATCH" : "POST";
       const response = await fetch(url, {
         method,
@@ -156,7 +156,7 @@ const ProjectForm = ({ allDepartments, project }) => {
             value={departmentId}
             onChange={(e) => setDepartmentId(e.target.value)}
           >
-            <option value="">Select Department</option>
+            <option value="0">Select Department</option>
             {allDepartments.map((department) => (
               <option
                 key={department.department_id}

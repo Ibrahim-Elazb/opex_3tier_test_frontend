@@ -76,8 +76,8 @@ const EmployeeForm = ({ allDepartments, employee }) => {
 
     try {
       const url = employee
-        ? `/api/employees/${employee.employee_id}`
-        : `/api/employees`;
+        ? `${process.env.BACKEND_URL}/api/employees/${employee.employee_id}`
+        : `${process.env.BACKEND_URL}/api/employees`;
       const method = employee ? "PATCH" : "POST";
       const response = await fetch(url, {
         method,
@@ -97,7 +97,7 @@ const EmployeeForm = ({ allDepartments, employee }) => {
           setSalary("");
           setJobTitle("");
           setPhoneNumber("");
-          setStartDate(null);
+          setStartDate("");
         }else{
           router.push("/employees")
         }
@@ -257,8 +257,12 @@ const EmployeeForm = ({ allDepartments, employee }) => {
             value={departmentId}
             onChange={(event) => setDepartmentId(+event.target.value)}
           >
+            <option value="0">Select Department</option>
             {allDepartments.map((department) => (
-              <option value={department.department_id}>
+              <option
+                key={department.department_id}
+                value={department.department_id}
+              >
                 {department.department_name}
               </option>
             ))}

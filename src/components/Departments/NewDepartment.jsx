@@ -27,8 +27,8 @@ const DepartmentForm = ({ department }) => {
 
     try {
       const url = department
-        ? `/api/departments/${department.department_id}`
-        : `/api/departments`;
+        ? `${process.env.BACKEND_URL}/api/departments/${department.department_id}`
+        : `${process.env.BACKEND_URL}/api/departments`;
       const method = department ? "PATCH" : "POST";
       const response = await fetch(url, {
         method,
