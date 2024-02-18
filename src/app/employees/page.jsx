@@ -1,6 +1,7 @@
 import React from "react";
 import ShowEmployees from "../../components/Employees/ShowEmployees";
 import { redirect } from "next/navigation";
+import ShowError from "@/components/Error/ShowError";
 
 async function ShowEmployeesPage() {
   try {
@@ -13,11 +14,27 @@ async function ShowEmployeesPage() {
     if (fetchEmployeesResponse.status == 200) {
       employees = fetchEmployeesResponse.data;
     } else {
-      redirect("/error-page");
+      // redirect("/error-page");
+      return (
+        <ShowError
+          ErrorMSG={{
+            title: "A problem occurred on Backend server",
+            details: "Backend server is working, but The Response isn't Success Code (200)",
+          }}
+        />
+      );
     }
     return <ShowEmployees allEmployees={employees} />;
   } catch (error) {
-    redirect("/error-page");
+    // redirect("/error-page");
+     return (
+       <ShowError
+         ErrorMSG={{
+           title: "Backend API may be down",
+           details: "Unable to fetch Employees Information From Backend Server",
+         }}
+       />
+     );
   }
 }
 

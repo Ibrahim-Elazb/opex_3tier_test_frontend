@@ -1,6 +1,7 @@
 import React from "react";
 import ShowProjects from "../../components/Projects/ShowProjects";
 import { redirect } from "next/navigation";
+import ShowError from "@/components/Error/ShowError";
 
 async function ShowProjectsPage() {
   try {
@@ -13,11 +14,28 @@ async function ShowProjectsPage() {
     if (fetchProjectsResponse.status == 200) {
       projects = fetchProjectsResponse.data;
     } else {
-      redirect("/error-page");
+      // redirect("/error-page");
+      return (
+        <ShowError
+          ErrorMSG={{
+            title: "A problem occurred on Backend server",
+            details:
+              "Backend server is working, but The Response isn't Success Code (200)",
+          }}
+        />
+      );
     }
     return <ShowProjects allProjects={projects} />;
   } catch (error) {
-    redirect("/error-page");
+    // redirect("/error-page");
+    return (
+      <ShowError
+        ErrorMSG={{
+          title: "Backend API may be down",
+          details: "Unable to fetch Projects Information From Backend Server",
+        }}
+      />
+    );
   }
 }
 
