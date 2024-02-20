@@ -8,6 +8,6 @@ import { departments } from "../../mocks/handlers/dummy-data/departments"
 describe('Show Departments', () => {
 it('renders without crashing', () => {
     render(<ShowDepartments allDepartments={departments}/>);
-    expect(screen.getByRole('link', { name: 'Add New Department' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Add New Departments' })).toBeInTheDocument();
 });
 })
