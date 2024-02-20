@@ -72,6 +72,7 @@ function ShowDepartments({ allDepartments }) {
           <tbody>
             {departments.map((department, index) => (
               <tr
+                data-testid="department-table-row"
                 className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                 key={department.department_id}
               >

@@ -90,6 +90,7 @@ function ShowEmployees({ allEmployees }) {
           <tbody>
             {employees.map((employee) => (
               <tr
+              testid="employee-row"
                 className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                 key={employee.employee_id}
               >

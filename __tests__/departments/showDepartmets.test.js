@@ -9,5 +9,6 @@ describe('Show Departments', () => {
 it('renders without crashing', () => {
     render(<ShowDepartments allDepartments={departments}/>);
     expect(screen.getByRole('link', { name: 'Add New Department' })).toBeInTheDocument();
+    expect(screen.getAllByTestId("department-table-row")).toHaveLength(5)
 });
 })
