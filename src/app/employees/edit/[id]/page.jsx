@@ -1,12 +1,11 @@
 import React from "react";
 import NewEmployeeForm from "@/components/Employees/NewEmployee";
-import { BACKEND_URL } from "@/utils/links";
 import ShowError from "@/components/Error/ShowError";
 async function EditEmployeesPage({ params }) {
   try {
     const id = params.id;
 
-    const departmentResponse = await fetch(`${BACKEND_URL}/api/departments`, {
+    const departmentResponse = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/departments`, {
       method: "GET",
       cache: "no-store",
     });
@@ -27,7 +26,7 @@ async function EditEmployeesPage({ params }) {
       );
     }
     //--------------------------------------------------------------------------------------
-    const employeeResponse = await fetch(`${BACKEND_URL}/api/employees/${id}`, {
+    const employeeResponse = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/employees/${id}`, {
       method: "GET",
       cache: "no-store",
     });

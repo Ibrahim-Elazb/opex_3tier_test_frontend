@@ -1,12 +1,12 @@
 import React from "react";
 import NewDepartmentForm from "@/components/Departments/NewDepartment";
-import { BACKEND_URL } from "@/utils/links";
+
 import ShowError from "@/components/Error/ShowError";
 async function EditDepartmentPage({ params }) {
   try {
     const id = params.id;
     const departmentResponse = await fetch(
-      `${BACKEND_URL}/api/departments/${id}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/departments/${id}`,
       {
         method: "GET",
         cache: "no-store",

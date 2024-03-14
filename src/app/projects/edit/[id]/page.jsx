@@ -1,12 +1,11 @@
 import React from "react";
 import NewProjectForm from "@/components/Projects/NewProject";
-import { BACKEND_URL } from "@/utils/links";
 import ShowError from "@/components/Error/ShowError";
 async function EditProjectPage({ params }) {
   try {
     const id = params.id;
 
-    const departmentResponse = await fetch(`${BACKEND_URL}/api/departments`, {
+    const departmentResponse = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/departments`, {
       method: "GET",
       cache: "no-store",
     });
@@ -27,7 +26,7 @@ async function EditProjectPage({ params }) {
       );
     }
     //-----------------------------------------------------------------------------------
-    const projectResponse = await fetch(`${BACKEND_URL}/api/projects/${id}`, {
+    const projectResponse = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/projects/${id}`, {
       method: "GET",
       cache: "no-store",
     });

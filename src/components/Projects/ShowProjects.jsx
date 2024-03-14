@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import { BACKEND_URL } from "@/utils/links";
 import Modal from "../ui/Modal"; // Ensure this path matches your modal component
 
 function ShowProjects({ allProjects }) {
@@ -18,7 +17,7 @@ function ShowProjects({ allProjects }) {
   async function deleteProjectHandler() {
     try {
       const response = await fetch(
-        `${BACKEND_URL}/api/projects/${deleteID}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/projects/${deleteID}`,
         {
           method: "DELETE",
           headers: {
@@ -32,7 +31,7 @@ function ShowProjects({ allProjects }) {
       if (response.ok) {
         // Fetch the updated list of projects
         const updatedProjectsResponse = await fetch(
-          `${BACKEND_URL}/api/projects`,
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/projects`,
           {
             method: "GET",
             cache: "no-store",

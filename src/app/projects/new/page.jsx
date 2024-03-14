@@ -1,13 +1,15 @@
 import React from "react";
 import ProjectForm from "@/components/Projects/NewProject";
-import { BACKEND_URL } from "@/utils/links";
 import ShowError from "@/components/Error/ShowError";
 async function NewProjectsPage() {
   try {
-    const response = await fetch(`${BACKEND_URL}/api/departments`, {
-      method: "GET",
-      cache: "no-store",
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/departments`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
     const fetchDepartmentsResponse = await response.json();
     let departments = [];
     if (fetchDepartmentsResponse.status == 200) {

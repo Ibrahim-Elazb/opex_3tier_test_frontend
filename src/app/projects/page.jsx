@@ -1,14 +1,16 @@
 import React from "react";
 import ShowProjects from "@/components/Projects/ShowProjects";
 import ShowError from "@/components/Error/ShowError";
-import { BACKEND_URL } from "@/utils/links";
 
 async function ShowProjectsPage() {
   try {
-    const response = await fetch(`${BACKEND_URL}/api/projects`, {
-      method: "GET",
-      cache: "no-store",
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/projects`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
     const fetchProjectsResponse = await response.json();
     let projects = [];
     if (fetchProjectsResponse.status == 200) {

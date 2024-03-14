@@ -1,14 +1,16 @@
 import React from "react";
 import ShowDepartments from "@/components/Departments/ShowDepartments";
 import ShowError from "@/components/Error/ShowError";
-import { BACKEND_URL } from "@/utils/links";
 
 async function ShowDepartmentsPage() {
   try {
-    const response = await fetch(`${BACKEND_URL}/api/departments`, {
-      method: "GET",
-      cache: "no-store",
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/departments`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
     const fetchDepartmentsResponse = await response.json();
     let departments = [];
     if (fetchDepartmentsResponse.status == 200) {

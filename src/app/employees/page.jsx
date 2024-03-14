@@ -1,14 +1,16 @@
 import React from "react";
 import ShowEmployees from "@/components/Employees/ShowEmployees";
 import ShowError from "@/components/Error/ShowError";
-import { BACKEND_URL } from "@/utils/links";
 
 async function ShowEmployeesPage() {
   try {
-    const response = await fetch(`${BACKEND_URL}/api/employees`, {
-      method: "GET",
-      cache: "no-store",
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/employees`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
     const fetchEmployeesResponse = await response.json();
     let employees = [];
     if (fetchEmployeesResponse.status == 200) {

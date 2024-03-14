@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import { BACKEND_URL } from "@/utils/links";
 import Modal from "../ui/Modal";
 
 function ShowEmployees({ allEmployees }) {
@@ -14,7 +13,7 @@ function ShowEmployees({ allEmployees }) {
   async function deleteEmployeeHandler() {
     try {
       const response = await fetch(
-        `${BACKEND_URL}/api/employees/${deleteID}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/employees/${deleteID}`,
         {
           method: "DELETE",
           headers: {
@@ -27,7 +26,7 @@ function ShowEmployees({ allEmployees }) {
       alert(data.message);
       if (response.ok) {
         const response = await fetch(
-          `${BACKEND_URL}/api/employees`,
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/employees`,
           {
             method: "GET",
             cache: "no-store",

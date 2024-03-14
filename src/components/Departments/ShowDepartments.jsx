@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import { BACKEND_URL } from "@/utils/links";
 import Modal from "../ui/Modal";
 
 function ShowDepartments({ allDepartments }) {
@@ -14,7 +13,7 @@ function ShowDepartments({ allDepartments }) {
   async function deleteDepartmentHandler() {
     try {
       const response = await fetch(
-        `${BACKEND_URL}/api/departments/${deleteID}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/departments/${deleteID}`,
         {
           method: "DELETE",
           headers: {
@@ -27,7 +26,7 @@ function ShowDepartments({ allDepartments }) {
       alert(data.message);
       if (response.ok) {
         const newDepartmentsResponse = await fetch(
-          `${BACKEND_URL}/api/departments`,
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/departments`,
           {
             method: "GET",
             cache: "no-store",
