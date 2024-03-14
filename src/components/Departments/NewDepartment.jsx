@@ -1,6 +1,7 @@
 "use client";
-import { useRouter } from "next/navigation"; // Note: Corrected import from "next/navigation" to "next/router"
 import React, { useState } from "react";
+import { useRouter } from "next/navigation"; // Note: Corrected import from "next/navigation" to "next/router"
+import { BACKEND_URL } from "@/utils/links";
 
 const DepartmentForm = ({ department }) => {
   const router = useRouter();
@@ -24,11 +25,10 @@ const DepartmentForm = ({ department }) => {
     const formData = {
       name: departmentName
     };
-
     try {
       const url = department
-        ? `${process.env.BACKEND_URL}/api/departments/${department.department_id}`
-        : `${process.env.BACKEND_URL}/api/departments`;
+        ? `${BACKEND_URL}/api/departments/${department.department_id}`
+        : `${BACKEND_URL}/api/departments`;
       const method = department ? "PATCH" : "POST";
       const response = await fetch(url, {
         method,
@@ -37,7 +37,6 @@ const DepartmentForm = ({ department }) => {
         },
         body: JSON.stringify(formData),
       });
-
       const data = await response.json();
       alert(data.message);
       if (response.ok) {

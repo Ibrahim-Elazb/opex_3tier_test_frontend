@@ -1,6 +1,7 @@
 "use client";
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { BACKEND_URL } from "@/utils/links";
 
 const EmployeeForm = ({ allDepartments, employee }) => {
   const router=useRouter();
@@ -76,8 +77,8 @@ const EmployeeForm = ({ allDepartments, employee }) => {
 
     try {
       const url = employee
-        ? `${process.env.BACKEND_URL}/api/employees/${employee.employee_id}`
-        : `${process.env.BACKEND_URL}/api/employees`;
+        ? `${BACKEND_URL}/api/employees/${employee.employee_id}`
+        : `${BACKEND_URL}/api/employees`;
       const method = employee ? "PATCH" : "POST";
       const response = await fetch(url, {
         method,

@@ -1,11 +1,11 @@
 import React from "react";
-import ShowEmployees from "../../components/Employees/ShowEmployees";
-import { redirect } from "next/navigation";
+import ShowEmployees from "@/components/Employees/ShowEmployees";
 import ShowError from "@/components/Error/ShowError";
+import { BACKEND_URL } from "@/utils/links";
 
 async function ShowEmployeesPage() {
   try {
-    const response = await fetch(`${process.env.BACKEND_URL}/api/employees`, {
+    const response = await fetch(`${BACKEND_URL}/api/employees`, {
       method: "GET",
       cache: "no-store",
     });
@@ -14,19 +14,19 @@ async function ShowEmployeesPage() {
     if (fetchEmployeesResponse.status == 200) {
       employees = fetchEmployeesResponse.data;
     } else {
-      // redirect("/error-page");
       return (
         <ShowError
           ErrorMSG={{
             title: "A problem occurred on Backend server",
-            details: "Backend server is working, but The Response isn't Success Code (200)",
+            details: `Backend server is working, but The Response isn't Success Code (200), 
+              The response Code is ${fetchEmployeesResponse.status}, 
+              and Server message is ${fetchEmployeesResponse.message}`,
           }}
         />
       );
     }
     return <ShowEmployees allEmployees={employees} />;
   } catch (error) {
-    // redirect("/error-page");
      return (
        <ShowError
          ErrorMSG={{

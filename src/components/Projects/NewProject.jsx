@@ -1,6 +1,7 @@
 "use client"
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { BACKEND_URL } from "@/utils/links";
 
 const ProjectForm = ({ allDepartments, project }) => {
   const router = useRouter();
@@ -47,8 +48,8 @@ const ProjectForm = ({ allDepartments, project }) => {
 
     try {
       const url = project
-        ? `${process.env.BACKEND_URL}/api/projects/${project.project_id}`
-        : `${process.env.BACKEND_URL}/api/projects`;
+        ? `${BACKEND_URL}/api/projects/${project.project_id}`
+        : `${BACKEND_URL}/api/projects`;
       const method = project ? "PATCH" : "POST";
       const response = await fetch(url, {
         method,
