@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { revalidateTag } from "next/cache";
 
 const DepartmentForm = ({ department }) => {
   const router = useRouter();
@@ -39,6 +40,7 @@ const DepartmentForm = ({ department }) => {
       const data = await response.json();
       alert(data.message);
       if (response.ok) {
+        revalidateTag("departments");
         router.push("/departments");
       }
     } catch (error) {

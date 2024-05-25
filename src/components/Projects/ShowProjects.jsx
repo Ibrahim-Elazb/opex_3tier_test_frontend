@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Modal from "../ui/Modal"; // Ensure this path matches your modal component
+import { revalidateTag } from "next/cache";
 
 function ShowProjects({ allProjects }) {
   const [projects, setProjects] = useState(allProjects);
@@ -22,6 +23,7 @@ function ShowProjects({ allProjects }) {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
+            cache: "no-store",
           },
         }
       );

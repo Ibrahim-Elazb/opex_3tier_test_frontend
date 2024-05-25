@@ -5,10 +5,13 @@ async function EditProjectPage({ params }) {
   try {
     const id = params.id;
 
-    const departmentResponse = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/departments`, {
-      method: "GET",
-      cache: "no-store",
-    });
+    const departmentResponse = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/departments`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
     const fetchDepartmentsResponse = await departmentResponse.json();
     let departments = [];
     if (fetchDepartmentsResponse.status == 200) {
@@ -26,10 +29,13 @@ async function EditProjectPage({ params }) {
       );
     }
     //-----------------------------------------------------------------------------------
-    const projectResponse = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/projects/${id}`, {
-      method: "GET",
-      cache: "no-store",
-    });
+    const projectResponse = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/projects/${id}`,
+      {
+        method: "GET",
+        cache: "no-store",
+      }
+    );
 
     const fetchProjectsResponse = await projectResponse.json();
     let projectDetails = null;

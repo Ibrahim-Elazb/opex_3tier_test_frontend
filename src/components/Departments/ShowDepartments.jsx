@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Modal from "../ui/Modal";
+import { revalidateTag } from "next/cache";
 
 function ShowDepartments({ allDepartments }) {
   const [departments, setDepartments] = useState(allDepartments);

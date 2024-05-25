@@ -85,6 +85,7 @@ const EmployeeForm = ({ allDepartments, employee }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
+        cache: "no-store",
       });
 
       const data = await response.json();

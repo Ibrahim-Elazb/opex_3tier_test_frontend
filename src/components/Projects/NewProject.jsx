@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { revalidateTag } from "next/cache";
 
 const ProjectForm = ({ allDepartments, project }) => {
   const router = useRouter();
@@ -56,6 +57,7 @@ const ProjectForm = ({ allDepartments, project }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
+        cache: "no-store",
       });
 
       const data = await response.json();

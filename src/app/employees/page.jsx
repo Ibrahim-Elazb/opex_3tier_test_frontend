@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import React from "react";
 import ShowEmployees from "@/components/Employees/ShowEmployees";
 import ShowError from "@/components/Error/ShowError";
@@ -29,14 +30,14 @@ async function ShowEmployeesPage() {
     }
     return <ShowEmployees allEmployees={employees} />;
   } catch (error) {
-     return (
-       <ShowError
-         ErrorMSG={{
-           title: "Backend API may be down",
-           details: "Unable to fetch Employees Information From Backend Server",
-         }}
-       />
-     );
+    return (
+      <ShowError
+        ErrorMSG={{
+          title: "Backend API may be down",
+          details: "Unable to fetch Employees Information From Backend Server",
+        }}
+      />
+    );
   }
 }
 
